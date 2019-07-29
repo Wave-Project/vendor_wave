@@ -49,7 +49,7 @@ PRODUCT_COPY_FILES += \
 # Build some apps
 PRODUCT_PACKAGES += \
     SnapdragonGallery \
-    Phonograph \
+    RetroMusicPlayer \
     DuckDuckGo \
     MiXplorer \
     MusicFX \
