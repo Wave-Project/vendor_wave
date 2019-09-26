@@ -110,9 +110,6 @@ include vendor/wave/configs/branding.mk
 # Bootanimation
 include vendor/wave/configs/bootanimation.mk
 
-# Themes
-include vendor/wave/configs/themes.mk
-
 ifneq ($(HOST_OS),linux)
 ifneq ($(sdclang_already_warned),true)
 $(warning **********************************************)
