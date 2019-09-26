@@ -31,7 +31,7 @@ import urllib.request
 default_manifest = ".repo/manifest.xml"
 
 custom_local_manifest = ".repo/local_manifests/wave.xml"
-custom_default_revision = "p"
+custom_default_revision = "q"
 custom_dependencies = "wave.dependencies"
 org_manifest = "wavedevices"  # leave empty if org is provided in manifest
 org_display = "WaveDevices"  # needed for displaying
