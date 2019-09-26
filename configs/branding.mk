@@ -32,14 +32,14 @@ ifndef WAVE_VERSION
   #        may include system pacthes for improvements and small new features.
   # Maintenance: The third number indicates a maintenance system upgrade with
   #              small, but effective improvements throughout the system.
-  WAVE_VERSION := 1.0
+  WAVE_VERSION := 3.0
 endif
 
 ifndef PLATFORM_WAVE_VERSION_CODE
   # As part of the Wave platform, each Major system upgrade is released
   # under a specific codename. The indicates which codename for which
   # major system upgrade under the Wave platform.
-  PLATFORM_WAVE_VERSION_CODE := Peppermint
+  PLATFORM_WAVE_VERSION_CODE := Quindim
 endif
 
 ifndef PLATFORM_WAVE_BUILD_NUMBER
@@ -54,7 +54,7 @@ ifndef PLATFORM_WAVE_BUILD_NUMBER
   # $(shell date -u +%m): Auto generated current month
   # 646: Last 3 numbers are a reversed time code. Time codes are track from the current time
   #      the (PLATFORM_WAVE_MAINTENANCE_PATCH) get's updated and so on.
-  PLATFORM_WAVE_BUILD_NUMBER := WPBN.P9102.$(shell date -u +%d).$(shell date -u +%m)001
+  PLATFORM_WAVE_BUILD_NUMBER := WPBN.Q9102.$(shell date -u +%d).$(shell date -u +%m)001
 endif
 
 ifndef PLATFORM_WAVE_MAINTENANCE_PATCH
@@ -63,7 +63,7 @@ ifndef PLATFORM_WAVE_MAINTENANCE_PATCH
   # of maintenance has been applied across devices and builds. This uses
   # the same logic as Android's security patch level, except it is updated
   # simultaneously and not on a monthly iteration.
-  PLATFORM_WAVE_MAINTENANCE_PATCH := 2019-07-01
+  PLATFORM_WAVE_MAINTENANCE_PATCH := 2019-10-02
 endif
 
 ifndef WAVE_BUILD_TYPE
@@ -73,8 +73,8 @@ endif
 
 ifndef CAF_VERSION
   # Current CAF vserion.
-  CAF_VERSION := LA.UM.7.1.r1-16300-sm8150.0
+  CAF_VERSION := LA.UM.8.1.r1-08800-sm8150.0
 endif
 
 # Output target zip name
-WAVE_TARGET_ZIP := WaveOS_$(WAVE_BUILD)-P-v$(WAVE_VERSION)-$(shell date -u +%Y%m%d-%H%M)-$(WAVE_BUILD_TYPE).zip
+WAVE_TARGET_ZIP := WaveOS_$(WAVE_BUILD)-Q-v$(WAVE_VERSION)-$(shell date -u +%Y%m%d-%H%M)-$(WAVE_BUILD_TYPE).zip
