@@ -10,7 +10,7 @@ end=$'\e[0m'
 
 # Assumes user is running the script in root of source
 WAVE_PATH=$(pwd)
-BRANCH=p
+BRANCH=q
 
 # Get merge tag from user
 read -p "Enter the CAF tag you want to merge: " TAG
@@ -20,10 +20,7 @@ CAF="https://source.codeaurora.org/quic/la"
 
 blacklist="device/qcom/common \
     manifest \
-    hardware/qcom/keymaster \
-    vendor/wave \
-    packages/apps/MusicFX \
-    vendor/qcom/opensource/power"
+    vendor/wave"
 
 reset_branch () {
   git checkout $BRANCH &> /dev/null
@@ -99,18 +96,6 @@ if [[ $PUSH == "Y" ]] || [[ $PUSH == "y" ]]; then
         git push -q wave HEAD:$BRANCH &> /dev/null
         cd $WAVE_PATH
     done
-
-    # Auto-merge manifest too
-    cd manifest
-    echo -e "\nMerging and pushing manifest ..."
-    reset_branch
-    wget -q "https://source.codeaurora.org/quic/la/platform/manifest/plain/${TAG}.xml?h=$TAG" -O default.xml &> /dev/null
-    sed -i '0,/default/s/default/default sync-j="6" sync-c="true"/' default.xml
-    sed -i '$i \ \ <include name="remove.xml" />' default.xml
-    sed -i '$i \ \ <include name="wave.xml" />' default.xml
-    git commit -a -m "manifest: Merge tag '$TAG' into $BRANCH" &> /dev/null
-    git push wave HEAD:$BRANCH &> /dev/null
-    cd $WAVE_PATH
 
     # Update CAF version in vendor/wave
     cd vendor/wave
