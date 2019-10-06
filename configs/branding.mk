@@ -32,7 +32,7 @@ ifndef WAVE_VERSION
   #        may include system pacthes for improvements and small new features.
   # Maintenance: The third number indicates a maintenance system upgrade with
   #              small, but effective improvements throughout the system.
-  WAVE_VERSION := 1.0
+  WAVE_VERSION := 2.0
 endif
 
 ifndef PLATFORM_WAVE_VERSION_CODE
