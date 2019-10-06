@@ -2,13 +2,16 @@ function __print_wave_functions_help() {
 cat <<EOF
 Additional functions:
 - mka:             Builds using SCHED_BATCH on all processors.
+- brunch:          Automatically lunches, clones dependencies if any and builds the ROM
 EOF
 }
 
-# Make using all available CPUs
-function mka() {
+# Initial setup before building
+function build_setup() {
+    # Fixup display HAL
     source $ANDROID_BUILD_TOP/vendor/wave/build/disp_hals_setup.sh
 
+    # Run hidl-gen script
     if [ -f $ANDROID_BUILD_TOP/$QTI_BUILDTOOLS_DIR/build/update-vendor-hal-makefiles.sh ]; then
         vendor_hal_script=$ANDROID_BUILD_TOP/$QTI_BUILDTOOLS_DIR/build/update-vendor-hal-makefiles.sh
         source $vendor_hal_script --check
@@ -34,49 +37,21 @@ function mka() {
             return $RET
         fi
     fi
+}
 
+# Make using all available CPUs, assume hyperthreading is available
+function mka() {
+    build_setup
     m -j $(($(nproc --all) * 2)) "$@"
 }
 
-function breakfast()
-{
-    target=$1
-    WAVE_DEVICES_ONLY="true"
-    unset LUNCH_MENU_CHOICES
-    add_lunch_combo full-eng
-    for f in `/bin/ls vendor/wave/vendorsetup.sh 2> /dev/null`
-        do
-            echo "including $f"
-            . $f
-        done
-    unset f
-
-    if [ $# -eq 0 ]; then
-        # No arguments, so let's have the full menu
-        echo "Nothing to eat for breakfast?"
-        lunch
-    else
-        echo "z$target" | grep -q "-"
-        if [ $? -eq 0 ]; then
-            # A buildtype was specified, assume a full device name
-            lunch $target
-        else
-            # This is probably just the wave model name
-            lunch wave_$target-userdebug
-        fi
-    fi
-    return $?
-}
-
-alias bib=breakfast
-
+# Lunch and mka bacon
 function brunch()
 {
-    breakfast $*
-    if [ $? -eq 0 ]; then
+    if lunch wave_$1-userdebug; then
         time mka bacon
     else
-        echo "No such item in brunch menu. Try 'breakfast'"
+        echo -e "\nNo such item in lunch menu - either you haven't cloned device sources or they are messed up"
         return 1
     fi
     return $?
