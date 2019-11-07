@@ -7,7 +7,8 @@ EOF
 }
 
 # Initial setup before building
-function build_setup() {
+build_setup()
+{
     # Fixup display HAL
     source $ANDROID_BUILD_TOP/vendor/wave/build/disp_hals_setup.sh
 
@@ -40,16 +41,16 @@ function build_setup() {
 }
 
 # Make using all available CPUs, assume hyperthreading is available
-function mka() {
+mka()
+{
     build_setup
     m -j $(($(nproc --all) * 2)) "$@"
 }
 
 # Lunch and mka bacon
-function brunch()
+brunch()
 {
-    if lunch wave_$1-userdebug; then
-        time mka bacon
+    if lunch wave_$1-userdebug; then mka bacon
     else
         echo -e "\nNo such item in lunch menu - either you haven't cloned device sources or they are messed up"
         return 1
