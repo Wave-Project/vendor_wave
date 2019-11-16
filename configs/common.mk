@@ -50,7 +50,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     SnapdragonGallery \
     Phonograph \
-    ViaBrowser \
+    DuckDuckGo \
     MiXplorer \
     MusicFX \
     Longshot
