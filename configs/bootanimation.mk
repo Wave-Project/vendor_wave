@@ -18,6 +18,6 @@
 ifneq ($(TARGET_BOOT_ANIMATION_RES),)
      PRODUCT_COPY_FILES += vendor/wave/prebuilt/common/media/bootanimation/$(TARGET_BOOT_ANIMATION_RES).zip:system/media/bootanimation.zip
 else
-     $(warning define correct bootanimation resolution.)
+     $(error TARGET_BOOT_ANIMATION_RES is not set.)
      exit
 endif
