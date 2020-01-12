@@ -53,7 +53,8 @@ PRODUCT_PACKAGES += \
     DuckDuckGo \
     MiXplorer \
     MusicFX \
-    Longshot
+    Longshot \
+    Recorder
 
 # Include support for additional filesystems
 PRODUCT_PACKAGES += \
