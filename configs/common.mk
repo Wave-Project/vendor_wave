@@ -145,9 +145,11 @@ PRODUCT_PACKAGES += \
     WaveWidget
 
 # Blurs
+ifneq ($(TARGET_DISABLE_BLUR), true)
 PRODUCT_SYSTEM_EXT_PROPERTIES += \
     ro.sf.blurs_are_expensive=1 \
     ro.surface_flinger.supports_background_blur=1
+endif
 
 # GApps
 ifneq ($(VANILLA_BUILD),true)
