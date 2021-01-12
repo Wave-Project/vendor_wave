@@ -53,8 +53,12 @@ PRODUCT_COPY_FILES += \
 # Build some apps
 PRODUCT_PACKAGES += \
     ViaBrowser \
-    MiXplorer \
     ExactCalculator
+
+ifneq ($(TARGET_DISABLE_MIXPLORER), true)
+PRODUCT_PACKAGES += \
+    MiXplorer
+endif
 
 # Include support for additional filesystems
 PRODUCT_PACKAGES += \
